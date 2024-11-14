@@ -1,0 +1,32 @@
+@media only screen and (min-width: 200px) and (max-width: 480px) {
+  .App {
+    padding: 0 !important;
+  }
+
+  .content {
+    padding: 10px !important;
+    margin-top: 50px !important;
+  }
+
+  .container {
+    padding: 10px !important;
+  }
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  /* position: fixed;
+  top: 0; */
+  z-index: 1000;
+}
+
+.green {
+  background: rgb(215, 255, 227);
+  background: linear-gradient(
+    175deg,
+    rgba(215, 255, 227, 1) 0%,
+    rgba(215, 255, 227, 1) 43%,
+    rgba(11, 92, 36, 1) 100%
+  );
+}
