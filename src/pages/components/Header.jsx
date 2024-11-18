@@ -5,7 +5,7 @@ import CustomEase from 'gsap/CustomEase';
 // Tạo easing function tùy chỉnh
 CustomEase.create('easeOutFast', 'M0,0 C0.25,0.1 0.25,1 1,1'); // Opening ease
 CustomEase.create('easeInFast', 'M0,0 C0.5,0 0.75,0.2 1,1'); // Closing ease
-export default function Header({ shortName }) {
+export default function Header({ shortName, isFixed }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const contentRef = useRef(null);
@@ -109,7 +109,10 @@ export default function Header({ shortName }) {
   };
 
   return (
-    <nav className="navigation hidden md:block font-Ramaraja" id="navigation" ref={navigationRef}>
+    <nav
+      className={`navigation hidden md:block ${isFixed && 'header-fixed'} font-Ramaraja`}
+      id="navigation"
+      ref={navigationRef}>
       <div className="navigation__container">
         <div className="navigation__logo">{shortName ? shortName : 'Hà anh'}</div>
         <div className="navigation__menu-btn" id="menu-btn" onClick={toggleMenu}>

@@ -11,6 +11,7 @@ import { getProfile, getExperience } from '../../libs/api/api';
 import { ClipLoader } from 'react-spinners';
 
 import Work from './Work/Work';
+import Loading from '../components/Loading';
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [description, setDescription] = useState('');
@@ -24,6 +25,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [shortName, setShortName] = useState('');
   const [experience, setExperience] = useState([]);
+  const [isFixed, setIsFixed] = useState(false);
+
   useEffect(() => {
     async function getData() {
       const profile = await getProfile();
@@ -47,31 +50,20 @@ export default function Home() {
 
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
+
+      if (window.scrollY > window.innerHeight) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const override = {
-    display: 'block',
-    borderColor: 'black',
-    boxSizing: 'border-box',
-  };
-
   if (isLoading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center absolute top-0 left-0 ">
-        <ClipLoader
-          color="#000000"
-          loading={isLoading}
-          size={100}
-          cssOverride={override}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </div>
-    );
+    return <Loading />;
   }
 
   const scrollToTop = () => {
@@ -79,13 +71,13 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="font-IBM">
       <div className="bg-[#FBFBFB] min-h-screen content sm:!mt-0 sm:!px-0" id="content">
-        <Header shortName={shortName} />
+        <Header shortName={shortName} isFixed={isFixed} />
         <About description={description} profilePic={profilePic} cv={cv} role={role} name={name} />
-        <Portfolio />
         <Skill />
         <Work experience={experience} />
+        <Portfolio />
         <Contact linkedin={linkedin} github={github} email={email} />
         <Footer />
         {showScrollTop && (
@@ -97,6 +89,6 @@ export default function Home() {
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 }

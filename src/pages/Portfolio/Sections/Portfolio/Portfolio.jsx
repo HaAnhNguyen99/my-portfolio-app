@@ -1,107 +1,183 @@
+import './Portfolio.less';
 import default_pj_preview_img from '../../../../assets/imgs/default-pj-img.png';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { useEffect, useState } from 'react';
-import { BiCodeAlt, BiMobile, BiCloud } from 'react-icons/bi';
-import { getProjects, getCategories } from '../../../../libs/api/api';
-import Aos from 'aos';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { getProjects } from '../../../../libs/api/api';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
+import Loading from '../../../components/Loading';
+import { useGSAP } from '@gsap/react';
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('all');
   const [projects, setProjects] = useState([]);
+  const containerRef = useRef(null);
+  const listRefs = useRef([]);
+  const listChildrenRefs = useRef([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to('.box', {
-    duration: 3,
-    rotation: 360,
-    x: 400,
-    ease: 'none',
-
-    scrollTrigger: {
-      trigger: '.flex',
-      markers: false,
-      scrub: 1,
-      start: 'top center',
-    },
-  });
-
-  useEffect(() => {
-    async function getData() {
-      const project_data = await getProjects();
-      setProjects(project_data);
-
-      const categories_data = await getCategories();
-      setActiveFilter(categories_data);
-    }
-
-    getData();
-    Aos.init();
+  useLayoutEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const projectData = await getProjects();
+        setProjects(projectData);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProjects();
   }, []);
 
+  projects &&
+    setTimeout(() => {
+      listRefs.current.map((el, index) => {
+        gsap.fromTo(
+          el,
+          {
+            autoAlpha: 0,
+            xPercent: 100,
+            opacity: 0,
+          },
+          {
+            duration: 1,
+            autoAlpha: 1,
+            xPercent: gsap.utils.wrap([0, 0]),
+            opacity: 1,
+            ease: 'power2.in',
+            scrollTrigger: {
+              id: `section-${index + 1}`,
+              trigger: el,
+              start: 'center-=200 center+=200',
+              toggleActions: 'play pause resume reverse',
+              markers: 'true',
+            },
+          }
+        );
+
+        gsap.fromTo(
+          listChildrenRefs.current[index],
+          {
+            autoAlpha: 0,
+            xPercent: -100,
+            opacity: 0,
+          },
+          {
+            duration: 1,
+            autoAlpha: 1,
+            xPercent: -50,
+            opacity: 1,
+            ease: 'power2.in',
+            scrollTrigger: {
+              id: `section-${index + 1}`,
+              trigger: el,
+              start: 'center-=200 center+=200',
+              toggleActions: 'play pause resume reverse',
+              markers: 'true',
+            },
+          },
+          '+=1'
+        );
+      });
+
+      // setTimeout(() => {
+      //   listChildrenRefs.current.map((el, index) => {
+      //     gsap.fromTo(
+      //       el,
+      //       {
+      //         autoAlpha: 0,
+      //         xPercent: -100,
+      //         opacity: 0,
+      //       },
+      //       {
+      //         duration: 1,
+      //         autoAlpha: 1,
+      //         xPercent: gsap.utils.wrap([-100, 100]),
+      //         opacity: 1,
+      //         ease: 'power1.inOut',
+      //         scrollTrigger: {
+      //           id: `section-${index + 1}`,
+      //           trigger: el,
+      //           start: 'center-=200 center+=200',
+      //           toggleActions: 'play pause resume reverse',
+      //           markers: 'true',
+      //         },
+      //       }
+      //     );
+      //   });
+      // }, 500);
+    }, 1000);
+
   return (
-    <section id="portfolio" className="py-16 border-t-2 border-black border-opacity-40">
-      <div className="container mx-auto px-6">
+    <section
+      id="portfolio"
+      ref={containerRef}
+      className="py-16 border-t-2 border-black border-opacity-40 font-IBM min-h-svh">
+      <div className="container mx-auto relative">
         <h2 className="text-3xl font-bold mb-8 text-center">My Projects</h2>
-        <div className="box green"></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects?.map((project) => {
-            return (
-              <div
-                key={project.id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden transform border-gray-500 hover:scale-105 transition-transform"
-                data-aos="fade-down"
-                data-aos-offset="1000px"
-                data-aos-delay="50"
-                data-aos-duration="1200"
-                data-aos-easing="ease-in-out"
-                data-aos-once="false"
-                data-aos-anchor-placement="top-bottom">
-                <img
-                  src={project.pj_preview_img ? project.pj_preview_img.url : default_pj_preview_img}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">
-                    <BlocksRenderer content={project.desc} />
-                  </p>
-                  <div className="categories mb-3 flex max-w-full flex-wrap gap-2">
-                    {project.categories.map((category) => {
-                      return (
-                        <p
-                          className="text-[#047db6] bg-[#a3e9fe] px-2 py-1 rounded-[20px] text-sm text-center "
-                          key={category.id}>
-                          {category.category_name}
-                        </p>
-                      );
-                    })}
-                  </div>
-                  <div className="flex justify-between">
-                    {project.live_link !== null && (
-                      <a
-                        href={project.live_link}
-                        target="_blank"
-                        className="text-[#C6E7FF] hover:text-[#FFDDAE]">
-                        Live Demo
-                      </a>
-                    )}
-                    {project.repo_link !== 'null' && (
-                      <a
-                        href={project.repo_link}
-                        target="_blank"
-                        className="text-[#C6E7FF] hover:text-[#FFDDAE]">
-                        Repository
-                      </a>
-                    )}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="block md:flex md:flex-wrap flex-col md:flex-row gap-8 relative w-full">
+            {projects?.map((project, index) => {
+              return (
+                <div
+                  key={project.id}
+                  ref={(el) => (listRefs.current[index] = el)}
+                  className="portfolio-container hover:scale-105 transition-transform relative flex flex-col">
+                  <img
+                    className="w-full max-h-[80vh] object-cover blur-lg hidden md:block"
+                    src={
+                      project.pj_preview_img ? project.pj_preview_img.url : default_pj_preview_img
+                    }
+                    alt={project.title}
+                    loading="lazy"
+                  />
+
+                  <div
+                    ref={(el) => (listChildrenRefs.current[index] = el)}
+                    className="portfolio-container__content  text-black z-10">
+                    <div className="portfolio-container__content__detail-box">
+                      <div className="detail-box__img w-full object-cover opacity-70">
+                        <img
+                          className="w-full max-h-[80vh] object-cover "
+                          src={
+                            project.pj_preview_img
+                              ? project.pj_preview_img.url
+                              : default_pj_preview_img
+                          }
+                          alt={project.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="detail-box__content">
+                        <h3 className="detail-box__content__title text-2xl font-bold text-center">
+                          {project.title}
+                        </h3>
+                        <div className="detail-box__content__desc text-sm">
+                          <BlocksRenderer content={project.desc} />
+                        </div>
+
+                        <div className="categories mt-3 flex max-w-full flex-wrap gap-2">
+                          {project.categories.map((category) => {
+                            return (
+                              <p
+                                className="text-[#a8bfc4] bg-[#f2f2f2] px-2 py-1 rounded-[20px] text-sm text-center "
+                                key={category.id}>
+                                {category.category_name}
+                              </p>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
