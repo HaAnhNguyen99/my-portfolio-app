@@ -1,12 +1,11 @@
 import './Portfolio.less';
 import default_pj_preview_img from '../../../../assets/imgs/default-pj-img.png';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { getProjects } from '../../../../libs/api/api';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import Loading from '../../../components/Loading';
-import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
@@ -55,58 +54,7 @@ export default function Portfolio() {
             },
           }
         );
-
-        gsap.fromTo(
-          listChildrenRefs.current[index],
-          {
-            autoAlpha: 0,
-            xPercent: -100,
-            opacity: 0,
-          },
-          {
-            duration: 1,
-            autoAlpha: 1,
-            xPercent: -50,
-            opacity: 1,
-            ease: 'power2.in',
-            scrollTrigger: {
-              id: `section-${index + 1}`,
-              trigger: el,
-              start: 'center-=200 center+=200',
-              toggleActions: 'play pause resume reverse',
-              markers: 'true',
-            },
-          },
-          '+=1'
-        );
       });
-
-      // setTimeout(() => {
-      //   listChildrenRefs.current.map((el, index) => {
-      //     gsap.fromTo(
-      //       el,
-      //       {
-      //         autoAlpha: 0,
-      //         xPercent: -100,
-      //         opacity: 0,
-      //       },
-      //       {
-      //         duration: 1,
-      //         autoAlpha: 1,
-      //         xPercent: gsap.utils.wrap([-100, 100]),
-      //         opacity: 1,
-      //         ease: 'power1.inOut',
-      //         scrollTrigger: {
-      //           id: `section-${index + 1}`,
-      //           trigger: el,
-      //           start: 'center-=200 center+=200',
-      //           toggleActions: 'play pause resume reverse',
-      //           markers: 'true',
-      //         },
-      //       }
-      //     );
-      //   });
-      // }, 500);
     }, 1000);
 
   return (
