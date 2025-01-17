@@ -9,7 +9,6 @@ export default function Skill() {
   useEffect(() => {
     async function getData() {
       const skills = await getSkills();
-      console.log(skills);
       setSkills(skills);
       setIsLoading(false);
     }

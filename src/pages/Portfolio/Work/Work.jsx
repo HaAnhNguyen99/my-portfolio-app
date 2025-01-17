@@ -13,19 +13,10 @@ export default function Work({ experience }) {
     <section className="work min-h-screen mt-10 font-IBM text-white">
       <h3 className="text-center text-2xl font-bold mb-10 text-black ">Experience</h3>
       {experience.map((item) => (
-        <div
-          className="card-box"
-          key={item.documentId}
-          data-aos="fade-left"
-          data-aos-anchor-placement="top-bottom">
+        <div className="card-box" key={item.documentId} data-aos="fade-left" data-aos-anchor-placement="top-bottom">
           <div className="card-container transform border-gray-500 hover:scale-105 transition-transform cursor-pointer">
             <div className="card-container__img-box">
-              <img
-                className="card-container__img"
-                src={item.images.url}
-                alt="company image"
-                loading="lazy"
-              />
+              <img className="card-container__img" src={item.img.url} alt="company image" loading="lazy" />
             </div>
             <div className="card-container__info  ">
               <h3 className="card-title">{item.company}</h3>

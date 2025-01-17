@@ -2,6 +2,7 @@ import './About.media.less';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export default function About({ description, profilePic, cv, role, name }) {
+  console.log(description);
   return (
     <section id="about" className="pt-40 md:pt-48 pb-16 min-h-screen sm:pt-10">
       <div className="container mx-auto px-6 ">
@@ -13,9 +14,7 @@ export default function About({ description, profilePic, cv, role, name }) {
             />
           </div>
           <div className="md:w-2/3">
-            <p className="text-lg mb-6 font-IBM ss:text-center">
-              {description ? <BlocksRenderer content={description} /> : ''}
-            </p>
+            <p className="text-lg mb-6 font-IBM ss:text-center">{description ? <BlocksRenderer content={description} /> : ''}</p>
             <div className="flex space-x-4 font-IBM ss:flex ss:justify-center ss:items-center">
               Check out my lastest
               <a

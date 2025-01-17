@@ -5,10 +5,9 @@ import About from './Sections/About/About';
 import Skill from './Sections/Skill/Skill';
 import Contact from './Sections/Contact/Contact';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import Portfolio from './Sections/Portfolio/Portfolio';
 import { getProfile, getExperience } from '../../libs/api/api';
-import { ClipLoader } from 'react-spinners';
 
 import Work from './Work/Work';
 import Loading from '../components/Loading';

@@ -2,9 +2,8 @@ import './Header.less';
 import { useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import CustomEase from 'gsap/CustomEase';
-// Tạo easing function tùy chỉnh
-CustomEase.create('easeOutFast', 'M0,0 C0.25,0.1 0.25,1 1,1'); // Opening ease
-CustomEase.create('easeInFast', 'M0,0 C0.5,0 0.75,0.2 1,1'); // Closing ease
+CustomEase.create('easeOutFast', 'M0,0 C0.25,0.1 0.25,1 1,1');
+CustomEase.create('easeInFast', 'M0,0 C0.5,0 0.75,0.2 1,1');
 export default function Header({ shortName, isFixed }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
