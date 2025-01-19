@@ -15,7 +15,6 @@ export default function Portfolio() {
       try {
         const projectData = await getProjects();
         setProjects(projectData);
-        console.log(projectData);
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {

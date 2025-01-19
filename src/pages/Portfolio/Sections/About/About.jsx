@@ -2,7 +2,6 @@ import './About.media.less';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export default function About({ description, profilePic, cv, role, name }) {
-  console.log(description);
   return (
     <section id="about" className="pt-40 md:pt-48 pb-16 min-h-screen sm:pt-10">
       <div className="container mx-auto px-6 ">

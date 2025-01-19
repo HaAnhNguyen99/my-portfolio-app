@@ -22,8 +22,8 @@ export const getProfile = async () => {
       profile_pic: `${response.data.data.profile_pic.url}`,
       description: response.data.data.description,
       cv: response.data.data.cv.url,
-      linkedin: response.data.data.linkin_profile,
-      github: response.data.data.github_link,
+      linkedin: response.data.data.linkedin,
+      github: response.data.data.github,
       email: response.data.data.email,
     };
   } catch (error) {
