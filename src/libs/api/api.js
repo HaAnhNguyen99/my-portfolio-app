@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 // Function to get all projects
 export const getProjects = async () => {
   try {
-    const response = await axios.get('api/projects?populate[0]=pj_preview_img&populate[1]=categories');
+    const response = await axios.get("api/projects?populate=*");
     return response.data.data;
   } catch (error) {
-    console.error('Failed to fetch projects:', error);
+    console.error("Failed to fetch projects:", error);
     return null;
   }
 };
@@ -14,7 +14,11 @@ export const getProjects = async () => {
 // Function to get my profile
 export const getProfile = async () => {
   try {
-    const response = await axios.get(`api/profiles/${import.meta.env.VITE_PROFILE_ID}?populate[0]=profile_pic&populate[1]=cv`);
+    const response = await axios.get(
+      `api/profiles/${
+        import.meta.env.VITE_PROFILE_ID
+      }?populate[0]=profile_pic&populate[1]=cv`
+    );
     return {
       name: response.data.data.name,
       short_name: response.data.data.short_name,
@@ -35,7 +39,7 @@ export const getProfile = async () => {
 // Function to get categories
 export const getCategories = async () => {
   try {
-    const response = await axios.get('api/categories');
+    const response = await axios.get("api/categories");
 
     return response.data.data.map((category) => ({
       name: category.category_name,
@@ -49,7 +53,7 @@ export const getCategories = async () => {
 // Function to get experience
 export const getExperience = async () => {
   try {
-    const response = await axios.get('/api/experiences?populate=*');
+    const response = await axios.get("/api/experiences?populate=*");
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -60,7 +64,18 @@ export const getExperience = async () => {
 // Function to get experience
 export const getSkills = async () => {
   try {
-    const response = await axios.get('/api/skills');
+    const response = await axios.get("/api/skills");
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+// Function to get Tech stack
+export const getTechStack = async () => {
+  try {
+    const response = await axios.get(`/api/tech-stacks?populate=*`);
     return response.data.data;
   } catch (error) {
     console.error(error);
