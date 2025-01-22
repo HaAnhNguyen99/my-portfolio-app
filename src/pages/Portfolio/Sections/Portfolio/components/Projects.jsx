@@ -13,15 +13,22 @@ export const Projects = ({ projects }) => {
           return (
             <div
               key={project.id}
-              className="portfolio-container px-[15px] justify-around mb-32 hover:scale-105 transition-transform relative flex flex-col">
-              <div className="project_items flex gap-5 flex-row-reverse">
-                <div className="basis-2/3">
-                  <h3 className="text-2xl font-bold  py-2 ">{project.title}</h3>
-                  <p className="flex gap-2">
+              className="portfolio-container px-[15px] justify-around mb-32 transition-transform relative flex flex-col">
+              <div className="project_items flex gap-16 flex-row-reverse">
+                <div className="project_items__content justify-around cursor-pointer tr basis-3/5">
+                  <h3 className="text-[2em] font-bold  py-2 ">
+                    {project.title}–
+                  </h3>
+                  <p className="flex gap-10">
                     {project.short_desc}
-                    <img src={right_arrow} alt="right arrow" width={60} />
+                    <img
+                      className="right-arrorw tranform rotate-[-45deg] transition-transform duration-700"
+                      src={right_arrow}
+                      alt="right arrow"
+                      width={60}
+                    />
                   </p>
-                  <div className="border-2 border-primary rounded-2xl overflow-hidden">
+                  <div className="border-2 border-primary rounded-2xl overflow-hidden mt-6">
                     <img
                       sizes="(max-width: 479px) 82vw, (max-width: 767px) 62vw, (max-width: 991px) 438px, 500.828125px"
                       className="w-full object-cover "
@@ -35,7 +42,7 @@ export const Projects = ({ projects }) => {
                     />
                   </div>
                 </div>
-                <div className="self-end px-[50px] py-[30px] h-full">
+                <div className="self-end h-fit px-[50px] py-[30px] h-full mb-10">
                   <div className="text-base">
                     <p>Project</p>
                     {project.positions.map((category) => {
@@ -48,37 +55,25 @@ export const Projects = ({ projects }) => {
                     })}
                   </div>
 
-                  <div>
+                  <div className="mt-10">
                     <p className="text-base">Team size</p>
                     <p className="text-2xl">{project.team_size}</p>
                   </div>
 
-                  {/* <div className="">
-                      <BlocksRenderer content={project.desc} />
-                    </div> */}
-
-                  <div className="">
-                    {project.categories.map((category) => {
-                      <p className="" key={category.id}>
-                        {category.category_name}
-                      </p>;
-                    })}
-                  </div>
-
-                  <div className="mt-3">
+                  <div className="mt-10">
                     <a
                       href={project.repo_link}
                       target="_blank"
-                      className="rounded-full bg-primary px-4 py-2 text-sm flex">
+                      className="text-white bold bg-secondary rounded-full px-10 py-4 text-sm flex items-center w-fit">
                       <span>Repo link</span>
                       <svg
                         width="20px"
                         height="20px"
-                        className="text-sm"
+                        className="text-sm ml-2"
                         viewBox="0 0 72 72"
                         id="emoji"
                         xmlns="http://www.w3.org/2000/svg"
-                        fill="#000000"
+                        fill="#ffffff"
                         transform="rotate(90) matrix(-1, 0, 0, 1, 0, 0)">
                         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                         <g
@@ -89,7 +84,7 @@ export const Projects = ({ projects }) => {
                           <g id="color">
                             <path
                               id="_x2934__xFE0F__1_"
-                              fill="#072c45"
+                              fill="#ffffff"
                               stroke="none"
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -104,7 +99,7 @@ export const Projects = ({ projects }) => {
                             <path
                               id="_x2934__xFE0F__1_"
                               fill="none"
-                              stroke="#000000"
+                              stroke="#ffffff"
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeMiterlimit="10"

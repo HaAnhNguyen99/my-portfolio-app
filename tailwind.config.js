@@ -11,6 +11,10 @@ export default {
         IBM: ["IBM Plex Mono", "monospace"],
         Ramaraja: ["Ramaraja", "serif"],
       },
+      colors: {
+        primary: "#072c45",
+        secondary: "#052824",
+      },
     },
   },
   plugins: [

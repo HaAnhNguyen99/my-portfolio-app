@@ -2,3 +2,14 @@
   flex-direction: row;
   transition: flex-direction 0.3s ease-in-out;
 }
+
+.project_items__content {
+  transition: transform 0.6s ease-in-out;
+
+  &:hover {
+    transform: translateX(5%);
+    .right-arrorw {
+      transform: rotate(0deg);
+    }
+  }
+}
