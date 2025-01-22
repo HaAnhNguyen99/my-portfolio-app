@@ -4,6 +4,7 @@ import "./About.media.less";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { getTechStack } from "../../../../libs/api/api";
 import { useState } from "react";
+import TechStack from "./components/TechStack";
 
 export default function About({ description, profilePic, cv, role, name }) {
   const [techStack, setTechStack] = useState([]);
@@ -46,17 +47,20 @@ export default function About({ description, profilePic, cv, role, name }) {
             </div>
             <div className=" flex space-x-4 mt-20 items-center ">
               Current favorite tech stack/tools:
-              {techStack.map((item) => (
-                <div
-                  className="flex space-x-4 border rounded-full overflow-hidden border-black border-opacity-40 ml-2"
-                  key={item.id}>
-                  <img
-                    src={item.img.url}
-                    alt={item.name}
-                    className="w-10 h-10 object-cover "
-                  />
-                </div>
-              ))}
+              {techStack.map((item) => {
+                console.log(item);
+                return (
+                  <TechStack hoverText={item.name} key={item.id}>
+                    <div className="flex space-x-4 border rounded-full overflow-hidden border-black border-opacity-40 ml-2">
+                      <img
+                        src={item.img.url}
+                        alt={item.name}
+                        className="w-10 h-10 object-cover "
+                      />
+                    </div>
+                  </TechStack>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import right_arrow from "../../../../../assets/svg/right-arrow.svg";
 import "./Projects.less";
 
 export const Projects = ({ projects }) => {
-  console.log(projects);
   return (
     <>
       <div className="block md:flex md:flex-wrap color-secondary flex-col md:flex-row gap-8 relative w-full">
@@ -42,7 +41,7 @@ export const Projects = ({ projects }) => {
                     />
                   </div>
                 </div>
-                <div className="self-end h-fit px-[50px] py-[30px] h-full mb-10">
+                <div className="self-end px-[50px] py-[30px] h-fit mb-10">
                   <div className="text-base">
                     <p>Project</p>
                     {project.positions.map((category) => {
