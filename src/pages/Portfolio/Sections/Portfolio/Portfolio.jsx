@@ -3,7 +3,7 @@ import "./Portfolio.less";
 
 import { useLayoutEffect, useState } from "react";
 import { getProjects } from "../../../../libs/api/api";
-import Loading from "../../../components/Loading";
+import Loading from "../../../components/Loading/Loading";
 import { Projects } from "./components/Projects";
 
 export default function Portfolio() {

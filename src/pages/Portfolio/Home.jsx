@@ -10,7 +10,7 @@ import Portfolio from "./Sections/Portfolio/Portfolio";
 import { getProfile, getExperience } from "../../libs/api/api";
 
 import Work from "./Work/Work";
-import Loading from "../components/Loading";
+import Loading from "../components/Loading/Loading";
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [description, setDescription] = useState("");
@@ -25,6 +25,7 @@ export default function Home() {
   const [shortName, setShortName] = useState("");
   const [experience, setExperience] = useState([]);
   const [isFixed, setIsFixed] = useState(false);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -39,6 +40,8 @@ export default function Home() {
       setLinkedin(profile.linkedin);
       setGithub(profile.github);
       setEmail(profile.email);
+      setAddress(profile.address);
+
       setShortName(profile.short_name);
 
       setExperience(experience);
@@ -82,10 +85,15 @@ export default function Home() {
           role={role}
           name={name}
         />
-        <Skill />
         <Work experience={experience} />
         <Portfolio />
-        <Contact linkedin={linkedin} github={github} email={email} />
+        <Skill />
+        <Contact
+          address={address}
+          linkedin={linkedin}
+          github={github}
+          email={email}
+        />
         <Footer />
         {showScrollTop && (
           <button

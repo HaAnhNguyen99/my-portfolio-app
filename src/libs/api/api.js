@@ -29,6 +29,7 @@ export const getProfile = async () => {
       linkedin: response.data.data.linkedin,
       github: response.data.data.github,
       email: response.data.data.email,
+      address: response.data.data.address,
     };
   } catch (error) {
     console.error(error);
@@ -64,7 +65,7 @@ export const getExperience = async () => {
 // Function to get experience
 export const getSkills = async () => {
   try {
-    const response = await axios.get("/api/skills");
+    const response = await axios.get("/api/skills?populate=*");
     return response.data.data;
   } catch (error) {
     console.error(error);

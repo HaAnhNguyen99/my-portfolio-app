@@ -13,3 +13,33 @@
     }
   }
 }
+
+.repo-btn {
+  transition: all 0.7s ease-in-out;
+
+  svg {
+    transition: transform 0.7s ease-in-out;
+  }
+
+  &:hover {
+    background-color: #fff;
+    color: #052824;
+    svg {
+      animation: move 1s ease-in-out;
+      fill: #052824;
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}

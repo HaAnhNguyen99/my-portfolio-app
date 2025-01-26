@@ -1,0 +1,16 @@
+.techstack-item {
+  transition: all 1s ease-out;
+  &:hover {
+    img {
+      transform: translateX(100%);
+    }
+  }
+
+  .hidden-img {
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    left: -100%;
+  }
+}

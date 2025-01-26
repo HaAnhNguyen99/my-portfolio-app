@@ -63,7 +63,7 @@ export const Projects = ({ projects }) => {
                     <a
                       href={project.repo_link}
                       target="_blank"
-                      className="text-white bold bg-secondary rounded-full px-10 py-4 text-sm flex items-center w-fit">
+                      className="repo-btn text-white bold bg-secondary rounded-full px-10 py-4 text-sm flex items-center w-fit">
                       <span>Repo link</span>
                       <svg
                         width="20px"

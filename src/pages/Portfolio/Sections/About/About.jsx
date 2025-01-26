@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./About.css";
+import "./About.less";
 import "./About.media.less";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { getTechStack } from "../../../../libs/api/api";
@@ -45,20 +45,24 @@ export default function About({ description, profilePic, cv, role, name }) {
                 &nbsp;cv&nbsp;
               </a>
             </div>
-            <div className=" flex space-x-4 mt-20 items-center ">
+            <div className="overflow-hidden flex  mt-20 items-center ">
               Current favorite tech stack/tools:
               {techStack.map((item) => {
-                console.log(item);
                 return (
-                  <TechStack hoverText={item.name} key={item.id}>
-                    <div className="flex space-x-4 border rounded-full overflow-hidden border-black border-opacity-40 ml-2">
-                      <img
-                        src={item.img.url}
-                        alt={item.name}
-                        className="w-10 h-10 object-cover "
-                      />
-                    </div>
-                  </TechStack>
+                  <div
+                    key={item.id}
+                    className="techstack-item transition-all duration-700 relative flex   rounded-full overflow-hidden border-gray-950 border border-opacity-40 ml-2">
+                    <img
+                      src={item.hover_img.url}
+                      alt={item.name}
+                      className="w-10 h-10 object-cover transition-all duration-700 !m-0 relative hidden-img"
+                    />
+                    <img
+                      src={item.img.url}
+                      alt={item.name}
+                      className="w-10 h-10 object-cover transition-all duration-700  m-0 hover:translate-x-10"
+                    />
+                  </div>
                 );
               })}
             </div>
