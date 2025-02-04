@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import "./About.less";
-import "./About.media.less";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { getTechStack } from "../../../../libs/api/api";
-import { useState } from "react";
-import TechStack from "./components/TechStack";
+import { useEffect } from 'react';
+import './About.less';
+import './About.media.less';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import { getTechStack } from '../../../../libs/api/api';
+import { useState } from 'react';
+import TechStack from './components/TechStack';
 
 export default function About({ description, profilePic, cv, role, name }) {
   const [techStack, setTechStack] = useState([]);
@@ -24,24 +24,20 @@ export default function About({ description, profilePic, cv, role, name }) {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex items-center justify-center">
             <div
-              className={
-                "rounded-full w-64 h-64 object-cover shadow-lg bg-profile-custom  "
-              }
+              className={'rounded-full w-64 h-64 object-cover shadow-lg bg-profile-custom  '}
               style={{ backgroundImage: `url('${profilePic}')` }}
             />
           </div>
           <div className="md:w-2/3">
-            <p className="text-lg mb-6 font-IBM ss:text-center">
-              {description ? <BlocksRenderer content={description} /> : ""}
-            </p>
-            <div className="flex space-x-4 font-IBM ss:flex ss:justify-center ss:items-center">
+            <p className="text-lg mb-6  ss:text-center">{description ? <BlocksRenderer content={description} /> : ''}</p>
+            <div className="flex space-x-4  ss:flex ss:justify-center ss:items-center">
               Check out my lastest
               <a
                 href={cv}
                 download
                 rel="noopener noreferrer"
                 target="_blank"
-                className="font-IBM border-spacing-1 bold border-b-2 border-black border-opacity-40 ">
+                className=" border-spacing-1 bold border-b-2 border-black border-opacity-40 ">
                 &nbsp;cv&nbsp;
               </a>
             </div>

@@ -1,10 +1,10 @@
-import "./Portfolio.media.less";
-import "./Portfolio.less";
+import './Portfolio.media.less';
+import './Portfolio.less';
 
-import { useLayoutEffect, useState } from "react";
-import { getProjects } from "../../../../libs/api/api";
-import Loading from "../../../components/Loading/Loading";
-import { Projects } from "./components/Projects";
+import { useLayoutEffect, useState } from 'react';
+import { getProjects } from '../../../../libs/api/api';
+import Loading from '../../../components/Loading/Loading';
+import { Projects } from './components/Projects';
 
 export default function Portfolio() {
   const [projects, setProjects] = useState([]);
@@ -16,7 +16,7 @@ export default function Portfolio() {
         const projectData = await getProjects();
         setProjects(projectData);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error('Error fetching projects:', error);
       } finally {
         setIsLoading(false);
       }
@@ -25,7 +25,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <section className="py-16 border-t-2 border-black border-opacity-40 font-IBM min-h-svh">
+    <section className="py-16 border-t-2 border-black border-opacity-40 min-h-svh">
       <div className="container mx-auto relative">
         <h2 className="text-3xl font-bold mb-8 text-center">My Projects</h2>
         {isLoading ? <Loading /> : <Projects projects={projects} />}

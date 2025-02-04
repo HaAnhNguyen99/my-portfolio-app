@@ -1,31 +1,31 @@
-import { useState, useEffect } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { FaArrowUp } from 'react-icons/fa';
 
-import About from "./Sections/About/About";
-import Skill from "./Sections/Skill/Skill";
-import Contact from "./Sections/Contact/Contact";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
-import Portfolio from "./Sections/Portfolio/Portfolio";
-import { getProfile, getExperience } from "../../libs/api/api";
+import About from './Sections/About/About';
+import Skill from './Sections/Skill/Skill';
+import Contact from './Sections/Contact/Contact';
+import Footer from '../components/Footer/Footer';
+import Header from '../components/Header/Header';
+import Portfolio from './Sections/Portfolio/Portfolio';
+import { getProfile, getExperience } from '../../libs/api/api';
 
-import Work from "./Work/Work";
-import Loading from "../components/Loading/Loading";
+import Work from './Work/Work';
+import Loading from '../components/Loading/Loading';
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [description, setDescription] = useState("");
-  const [role, setRole] = useState("");
-  const [name, setName] = useState("");
-  const [profilePic, setProfilePic] = useState("");
-  const [cv, setCv] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [github, setGithub] = useState("");
-  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState('');
+  const [role, setRole] = useState('');
+  const [name, setName] = useState('');
+  const [profilePic, setProfilePic] = useState('');
+  const [cv, setCv] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [github, setGithub] = useState('');
+  const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [shortName, setShortName] = useState("");
+  const [shortName, setShortName] = useState('');
   const [experience, setExperience] = useState([]);
   const [isFixed, setIsFixed] = useState(false);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     async function getData() {
@@ -60,8 +60,8 @@ export default function Home() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (isLoading) {
@@ -69,31 +69,18 @@ export default function Home() {
   }
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="font-IBM">
-      <div
-        className="bg-[#FBFBFB] min-h-screen content sm:!mt-0 sm:!px-0"
-        id="content">
+    <div className="">
+      <div className="bg-[#FBFBFB] min-h-screen content sm:!mt-0 sm:!px-0" id="content">
         <Header shortName={shortName} isFixed={isFixed} />
-        <About
-          description={description}
-          profilePic={profilePic}
-          cv={cv}
-          role={role}
-          name={name}
-        />
-        <Work experience={experience} />
+        <About description={description} profilePic={profilePic} cv={cv} role={role} name={name} />
         <Portfolio />
         <Skill />
-        <Contact
-          address={address}
-          linkedin={linkedin}
-          github={github}
-          email={email}
-        />
+        <Work experience={experience} />
+        <Contact address={address} linkedin={linkedin} github={github} email={email} />
         <Footer />
         {showScrollTop && (
           <button

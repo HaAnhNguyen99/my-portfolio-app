@@ -1,57 +1,77 @@
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-  FaRegAddressCard,
-} from "react-icons/fa";
-import { toast } from "react-toastify";
-import { ContactForm } from "./components/ContactForm";
-import MagnetButton from "../../../components/MagnetButton/MagnetButton";
-import addressImg from "../../../../assets/svg/address.svg";
-import linkedImg from "../../../../assets/svg/linkedin.svg";
-import gitImg from "../../../../assets/svg/github.svg";
-import emailImg from "../../../../assets/svg/email.svg";
+import { FaGithub, FaLinkedin, FaEnvelope, FaRegAddressCard } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { ContactForm } from './components/ContactForm';
+import MagnetButton from '../../../components/MagnetButton/MagnetButton';
+import addressImg from '../../../../assets/svg/address.svg';
+import linkedImg from '../../../../assets/svg/linkedin.svg';
+import gitImg from '../../../../assets/svg/github.svg';
+import emailImg from '../../../../assets/svg/email.svg';
 
 export default function Contact({ linkedin, github, email, address }) {
   return (
     <section id="contact" className="py-16 text-black">
       <div className="container mx-auto px-6">
-        <div className="text-4xl leading-[77px] text-center">
-          Wanna build something great together ?
-        </div>
+        <div className="text-4xl font-bold leading-[77px] text-center">Wanna build something great together ?</div>
 
-        <h2 className="text-3xl font-bold mb-8 text-center mt-10">
+        <h2 className="text-3xl font-bold mb-8 text-center mt-8">
           <MagnetButton>Get in Touch</MagnetButton>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className=" mt-20">
           {/* <ContactForm /> */}
-          <div className="space-y-6">
-            <div className="text-3xl hover:text-[#FFDDAE] flex items-center gap-2 p-4 border rounded-lg">
-              <img src={emailImg} alt="address" />
-              <span className="color-primary text-lg italic font-semibold underline cursor-pointer hover:color-primary-hover transition-all">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2  gap-4">
+            {/* Email */}
+            <div className=" hover:text-[#FFDDAE] p-4 border rounded-lg">
+              <div className="overflow-hidden h-10 w-10 p-2 border rounded-lg mb-8">
+                <img src={emailImg} alt="address" />
+              </div>
+              <p className="text-lg font-semibold">Email</p>
+              <p className="text-sm text-gray-500">Liên hệ qua email.</p>
+              <span className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
                 {email}
               </span>
             </div>
-            <div className="text-3xl hover:text-[#FFDDAE] flex items-center gap-2 p-4 border rounded-lg">
+
+            {/* Github */}
+            <div className="hover:text-[#FFDDAE] p-4 border rounded-lg">
+              <div className="overflow-hidden h-10 w-10 p-2 border rounded-lg mb-8">
+                <img src={gitImg} alt="address" />
+              </div>
+              <p className="text-lg font-semibold">Github</p>
+              <p className="text-sm text-gray-500">Liên hệ qua github.</p>
               <a
                 href={github}
                 target="blank"
-                className="text-2xl flex hover:text-[#FFDDAE]">
-                <img src={gitImg} alt="address" />
-              </a>
-            </div>
-            <div>
-              <a
-                href={linkedin}
-                target="blank"
-                className="flex text-3xl hover:text-[#FFDDAE]  items-center gap-2 p-4 border rounded-lg">
-                <img src={linkedImg} alt="address" />
+                className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
+                My github profile
               </a>
             </div>
 
-            <p>
-              <img src={addressImg} alt="address" />
-            </p>
+            {/* Linkedin */}
+            <div className="hover:text-[#FFDDAE] p-4 border rounded-lg">
+              <div className="overflow-hidden h-10 w-10 p-2 border rounded-lg mb-8">
+                <img src={linkedImg} alt="address" />
+              </div>
+              <p className="text-lg font-semibold">Linkedin</p>
+              <p className="text-sm text-gray-500">Liên hệ qua linkedin.</p>
+              <a
+                href={linkedin}
+                target="blank"
+                className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
+                My linkedin profile
+              </a>
+            </div>
+
+            {/* Address */}
+            <div className="hover:text-[#FFDDAE] p-4 border rounded-lg">
+              <div className="overflow-hidden h-10 w-10 p-2 border rounded-lg mb-8">
+                <img src={addressImg} alt="address" />
+              </div>
+              <p className="text-lg font-semibold">Address</p>
+              <p className="text-sm text-gray-500">Liên hệ qua address.</p>
+              <span className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
+                {address}
+              </span>
+            </div>
           </div>
         </div>
       </div>

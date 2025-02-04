@@ -10,7 +10,7 @@ export default function Work({ experience }) {
     Aos.init();
   }, []);
   return (
-    <section className="work min-h-screen mt-10 font-IBM text-white">
+    <section className="work min-h-screen mt-10  text-white">
       <h3 className="text-center text-2xl font-bold mb-10 text-black ">Experience</h3>
       {experience.map((item) => (
         <div className="card-box" key={item.documentId} data-aos="fade-left" data-aos-anchor-placement="top-bottom">
