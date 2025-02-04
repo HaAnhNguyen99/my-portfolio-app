@@ -7,11 +7,11 @@ const AutoCarousel = ({ skills }) => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 200,
+    speed: 400,
     slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 500,
+    autoplaySpeed: 700,
     arrows: false,
   };
   console.log(typeof skills);
