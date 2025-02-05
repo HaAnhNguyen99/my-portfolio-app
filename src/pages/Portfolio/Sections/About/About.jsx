@@ -41,26 +41,28 @@ export default function About({ description, profilePic, cv, role, name }) {
                 &nbsp;cv&nbsp;
               </a>
             </div>
-            <div className="overflow-hidden flex  mt-20 items-center ">
-              Current favorite tech stack/tools:
-              {techStack.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    className="techstack-item transition-all duration-700 relative flex   rounded-full overflow-hidden border-gray-950 border border-opacity-40 ml-2">
-                    <img
-                      src={item.hover_img.url}
-                      alt={item.name}
-                      className="w-10 h-10 object-cover transition-all duration-700 !m-0 relative hidden-img"
-                    />
-                    <img
-                      src={item.img.url}
-                      alt={item.name}
-                      className="w-10 h-10 object-cover transition-all duration-700  m-0 hover:translate-x-10"
-                    />
-                  </div>
-                );
-              })}
+            <div className="overflow-hidden flex md:flex-row flex-col mt-20 items-center ">
+              <span className="whitespace-nowrap lg:whitespace-normal sm:pb-7 md:pb-0">Current favorite tech stack/tools:</span>
+              <div className="flex justify-center items-center sm:mt-10 md:mt-0">
+                {techStack.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className="techstack-item transition-all duration-700 relative flex   rounded-full overflow-hidden border-gray-950 border border-opacity-40 ml-2">
+                      <img
+                        src={item.hover_img.url}
+                        alt={item.name}
+                        className="w-10 h-10 object-cover transition-all duration-700 !m-0 relative hidden-img"
+                      />
+                      <img
+                        src={item.img.url}
+                        alt={item.name}
+                        className="w-10 h-10 object-cover transition-all duration-700  m-0 hover:translate-x-10"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

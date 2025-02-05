@@ -16,12 +16,18 @@ export default function Work({ experience }) {
         <div className="card-box" key={item.documentId} data-aos="fade-left" data-aos-anchor-placement="top-bottom">
           <div className="card-container transform border-gray-500 hover:scale-105 transition-transform cursor-pointer">
             <div className="card-container__img-box">
-              <img className="card-container__img" src={item.img.url} alt="company image" loading="lazy" />
+              <div
+                className="card-container__img-box-img bg-cover bg-center rounded-2xl overflow-hidden lg:min-w-[500px] lg:min-h-[350px]"
+                style={{ backgroundImage: `url(${item.img.url})` }}></div>
+              <div className="card-container__img-box-overlay">
+                <p className="card-container__img-box-overlay-text">
+                  <p className="text-lg font-bold">Role: {item.position}</p>
+                  <p className="text-sm font-light">Duration: {item.duration}</p>
+                </p>
+              </div>
             </div>
-            <div className="card-container__info  ">
+            <div className="card-container__info">
               <h3 className="card-title">{item.company}</h3>
-              <p className="card-position">{item.position}</p>
-              <p className="card-duration">{item.duration}</p>
               <p className="card-description">
                 <BlocksRenderer content={item.description} />
               </p>

@@ -25,7 +25,7 @@ export default function Contact({ linkedin, github, email, address }) {
                 <img src={emailImg} alt="address" />
               </div>
               <p className="text-lg font-semibold">Email</p>
-              <p className="text-sm text-gray-500">Liên hệ qua email.</p>
+              <p className="text-sm text-gray-500">Contact me via email.</p>
               <span className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
                 {email}
               </span>
@@ -37,7 +37,7 @@ export default function Contact({ linkedin, github, email, address }) {
                 <img src={gitImg} alt="address" />
               </div>
               <p className="text-lg font-semibold">Github</p>
-              <p className="text-sm text-gray-500">Liên hệ qua github.</p>
+              <p className="text-sm text-gray-500">Contact me via github.</p>
               <a
                 href={github}
                 target="blank"
@@ -52,7 +52,7 @@ export default function Contact({ linkedin, github, email, address }) {
                 <img src={linkedImg} alt="address" />
               </div>
               <p className="text-lg font-semibold">Linkedin</p>
-              <p className="text-sm text-gray-500">Liên hệ qua linkedin.</p>
+              <p className="text-sm text-gray-500">Contact me via linkedin.</p>
               <a
                 href={linkedin}
                 target="blank"
@@ -67,7 +67,7 @@ export default function Contact({ linkedin, github, email, address }) {
                 <img src={addressImg} alt="address" />
               </div>
               <p className="text-lg font-semibold">Address</p>
-              <p className="text-sm text-gray-500">Liên hệ qua address.</p>
+              <p className="text-sm text-gray-500">My current address.</p>
               <span className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
                 {address}
               </span>
