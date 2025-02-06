@@ -4,7 +4,6 @@ import './About.media.less';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getTechStack } from '../../../../libs/api/api';
 import { useState } from 'react';
-import TechStack from './components/TechStack';
 
 export default function About({ description, profilePic, cv, role, name }) {
   const [techStack, setTechStack] = useState([]);
@@ -21,7 +20,7 @@ export default function About({ description, profilePic, cv, role, name }) {
   return (
     <section id="about" className="pt-40 md:pt-48 pb-16 min-h-screen sm:pt-10">
       <div className="container mx-auto px-6 ">
-        <div className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex flex-col md:flex-row items-center gap-12 ">
           <div className="md:w-1/3 flex items-center justify-center">
             <div
               className={'rounded-full w-64 h-64 object-cover shadow-lg bg-profile-custom  '}
@@ -29,7 +28,7 @@ export default function About({ description, profilePic, cv, role, name }) {
             />
           </div>
           <div className="md:w-2/3">
-            <p className="text-lg mb-6  ss:text-center">{description ? <BlocksRenderer content={description} /> : ''}</p>
+            <p className="text-lg mb-6 text-justify md:text-left ">{description ? <BlocksRenderer content={description} /> : ''}</p>
             <div className="flex space-x-4  ss:flex ss:justify-center ss:items-center">
               Check out my lastest
               <a
@@ -43,7 +42,7 @@ export default function About({ description, profilePic, cv, role, name }) {
             </div>
             <div className="overflow-hidden flex md:flex-row flex-col mt-20 items-center ">
               <span className="whitespace-nowrap lg:whitespace-normal sm:pb-7 md:pb-0">Current favorite tech stack/tools:</span>
-              <div className="flex justify-center items-center sm:mt-10 md:mt-0">
+              <div className="flex justify-center items-center mt-6 mb-10 md:mb-0 md:mt-0">
                 {techStack.map((item) => {
                   return (
                     <div

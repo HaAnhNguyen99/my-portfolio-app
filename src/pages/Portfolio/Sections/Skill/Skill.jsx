@@ -42,9 +42,7 @@ export default function Skill() {
             <span className="self-end text-xl">Great things are built from the first line of code</span>
             <img className="w-10 h-10 rotate-180" src={quotes} alt="quotes" />
           </p>
-          {/* <div className="skill-container grid grid-cols-1 items-center md:grid-cols-3 gap-6 "> */}
           <AutoCarousel skills={skills} />
-          {/* </div> */}
         </div>
       )}
     </section>

@@ -26,9 +26,9 @@ export default function Contact({ linkedin, github, email, address }) {
               </div>
               <p className="text-lg font-semibold">Email</p>
               <p className="text-sm text-gray-500">Contact me via email.</p>
-              <span className="color-primary italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
+              <p className="overflow-wrap inline-block break-words color-primary text-wrap italic font-semibold text-sm underline cursor-pointer hover:color-primary-hover transition-all">
                 {email}
-              </span>
+              </p>
             </div>
 
             {/* Github */}
